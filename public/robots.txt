@@ -1,0 +1,4 @@
+# Neuro Resident Companion is an offline clinical decision-support tool.
+# It is not intended to be indexed by search engines.
+User-agent: *
+Disallow: /
