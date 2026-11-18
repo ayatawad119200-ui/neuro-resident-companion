@@ -3,9 +3,11 @@
 ## Status summary
 
 - Version: `0.1.0`
-- Last updated: 2026-11-04
-- Current phase: **Phase 1 complete** (Phase 2 blocked on source text)
-- Completion: Phase 0 = 100%, Phase 1 = 100%, overall MVP ≈ 62%
+- Last updated: 2026-11-18
+- Current phase: **Phase 1 complete** (Phase 2 blocked on source text); Phase 3
+  deployment done
+- Completion: Phase 0 = 100%, Phase 1 = 100%, overall MVP ≈ 65%
+- Live: https://ayatawad119200-ui.github.io/neuro-resident-companion/
 
 ## Tasks
 
@@ -25,7 +27,7 @@
 | T-040 | Export/import + handover | DONE | 2 | JSON + text + print/PDF view (D-014) |
 | T-041 | E2E + Lighthouse + a11y | DONE | 2 | Lighthouse 100 on 8 routes; 6 Playwright E2E tests (D-013) |
 | T-042 | Five-doctor pilot | TODO | — | |
-| T-043 | Deployment + v0.1 changelog | DOING | 3 | Changelog done; GitHub Pages workflow + `BASE_PATH` added |
+| T-043 | Deployment + v0.1 changelog | DONE | 3 | Live on GitHub Pages; workflow runs `npm run check` + build |
 
 ## Session log
 
@@ -87,6 +89,36 @@
   - `npm audit` could not run (registry advisory endpoint error); earlier
     install reported 18 advisories, not yet triaged.
   - Real clinical content intentionally absent.
+
+### Session 3 — 2026-11-18 — AI: DeepSeek V4.1 Flash Free
+
+- Task: T-043 — deploy to GitHub Pages.
+- Completed:
+  - `vite.config.ts` now reads `base` from `BASE_PATH` (default `/`); the PWA
+    manifest uses relative `start_url`/`scope` so one artifact works at the
+    domain root or under `/<repo>/`.
+  - `.github/workflows/deploy-pages.yml` runs `npm run check`, builds with the
+    repository base path, writes `404.html` + `.nojekyll`, and publishes with
+    `actions/deploy-pages`.
+  - `public/.nojekyll` and `.gitattributes` (`eol=lf`) added.
+  - Verified a `/nrc/` subpath build locally: assets/manifest/SW all under the
+    base, SW scope `/nrc/`, and an offline deep link with the server stopped.
+  - Created the public repo and pushed `main`; enabled Pages (`build_type:
+    workflow`). The Actions run completed (build 1m20s, deploy 11s).
+  - Live smoke test: correct base paths, SW scope
+    `/neuro-resident-companion/`, manifest relative URLs, Lighthouse 100/100/100.
+  - Tooling note: installed portable MinGit + GitHub CLI under
+    `%TEMP%\opencode\nrc-tools` because winget's download stalled; no global
+    install was completed.
+- Files: `vite.config.ts`, `.github/workflows/deploy-pages.yml`,
+  `public/.nojekyll`, `.gitattributes`, `README.md`, `DECISIONS.md` (D-015),
+  `docs/ARCHITECTURE.md`, `docs/TASKS.md`, `CHANGELOG.md`, `PROGRESS.md`,
+  `HANDOVER.md`.
+- Tests: 56 unit + 6 E2E still pass; lint/typecheck clean.
+- Open issues:
+  - The workflow logs a Node 20 deprecation annotation for the pinned action
+    versions (they are forced onto Node 24); deployment still succeeds.
+  - `npm audit` advisories remain untriaged.
 
 ## Medical content awaiting review
 

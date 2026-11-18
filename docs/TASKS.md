@@ -50,7 +50,7 @@ created. Do not fill these from memory.**
 | T-040 | Export/import + handover note | DONE | JSON backup/restore, text handover, and print-to-PDF view |
 | T-041 | E2E + Lighthouse + a11y | DONE | Lighthouse a11y/best-practices/SEO 100 on 8 routes; 6 Playwright E2E tests pass |
 | T-042 | Five-doctor pilot + feedback | TODO | Requires approved content first |
-| T-043 | Deployment + CHANGELOG v0.1 | DOING | CHANGELOG v0.1 written; GitHub Pages workflow + `BASE_PATH` added; publishing in progress |
+| T-043 | Deployment + CHANGELOG v0.1 | DONE | GitHub Pages: https://ayatawad119200-ui.github.io/neuro-resident-companion/ |
 
 ## Immediate next step
 

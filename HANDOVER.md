@@ -4,15 +4,18 @@
 
 NRC Phase 0 (setup) and Phase 1 (engine + content framework) are complete and
 the production build passes. The app is a fully offline-capable Arabic RTL PWA
-with local case records, settings, backup/restore, and a source registry page.
-No real clinical content exists yet; all score/tree/dose/interaction objects in
-the UI are explicitly non-clinical demos.
+with local case records, settings, backup/restore, and a source registry page,
+deployed to GitHub Pages. No real clinical content exists yet; all
+score/tree/dose/interaction objects in the UI are explicitly non-clinical demos.
+
+Live: https://ayatawad119200-ui.github.io/neuro-resident-companion/
 
 ## 2. Last task
 
-**T-040 — Export/import + handover — DONE.** JSON backup/restore, copyable text
-handover, and a dedicated print/PDF view. **T-041 is also DONE**: 6 Playwright
-E2E tests pass and Lighthouse is 100 on 8 routes.
+**T-043 — Deployment — DONE.** The repo is public at
+https://github.com/ayatawad119200-ui/neuro-resident-companion and Pages deploys
+from Actions. **T-040/T-041 are also DONE**: print/PDF export, 6 Playwright E2E
+tests, and Lighthouse 100 on 8 local routes plus the live site.
 
 ## 3. What was done (files + functions)
 
@@ -63,10 +66,19 @@ E2E tests pass and Lighthouse is 100 on 8 routes.
   the app chrome (D-014).
 - `handoverInputFor` shares the case→handover mapping between detail and print.
 - `tsconfig.e2e.json` type-checks the tests; `@types/node` added for config/tests.
+- Deployment (D-015): `vite.config.ts` reads `BASE_PATH`; PWA manifest uses
+  relative `start_url`/`scope`; `.github/workflows/deploy-pages.yml` runs
+  `npm run check`, builds with `/<repo>/`, writes `404.html` + `.nojekyll`, and
+  publishes with `actions/deploy-pages`. `public/.nojekyll` is committed.
+- Verified under `/nrc/`: assets, manifest, SW scope (`/nrc/`), and an offline
+  deep link with the preview server stopped. Verified live under
+  `/neuro-resident-companion/` (SW scope correct, Lighthouse 100/100/100).
 
 ## 4. What remains in the same task
 
-- None for T-040/T-041. Optional follow-ups:
+- None for T-040/T-041/T-043. Remaining Phase 3 item: T-042 (five-doctor pilot),
+  which needs approved clinical content first.
+- Optional follow-ups:
   - Wire score/decision/med logs to case records (Phase 2).
   - Add an approved-only content loader before real content ships.
 
@@ -76,6 +88,9 @@ E2E tests pass and Lighthouse is 100 on 8 routes.
 **T-020** (history templates, stroke first) or **T-023** (acute ischemic stroke
 algorithm), depending on which source is provided. Create the `Source` row first,
 then the draft clinical object, then boundary tests.
+
+For future changes, push to `main`; the Pages workflow rebuilds and redeploys
+automatically.
 
 ## 6. Run/test commands
 
@@ -91,7 +106,13 @@ npm run test:e2e:ui
 npm run build
 npm run preview
 npm run icons
+# Project-site build (GitHub Pages style)
+BASE_PATH=/<repo>/ npm run build   # PowerShell: $env:BASE_PATH='/<repo>/'; npm run build
 ```
+
+Deployment: push to `main`; `.github/workflows/deploy-pages.yml` runs
+`npm run check`, builds with the repo base path, and deploys. Pages source must
+stay **GitHub Actions**.
 
 ## 7. Important decisions / constraints
 
@@ -122,7 +143,13 @@ exports an empty `sources` array.
   install reported 18 advisories (including 2 critical) that are not yet triaged.
 - `esbuild` postinstall warning from npm allow-scripts appeared during install,
   but Vite/Vitest build and tests run correctly.
+- The Pages workflow logs a Node 20 deprecation annotation for the pinned action
+  versions (`checkout@v4`, `setup-node@v4`, `configure-pages@v5`); GitHub forces
+  them onto Node 24 and deployment succeeds. Bump the actions later.
 - Real clinical content is intentionally absent; Phase 2 remains blocked.
+- Git is not installed system-wide on this machine; the deploy session used
+  portable MinGit + gh from `%TEMP%\opencode\nrc-tools`. Install Git normally
+  before the next session if `git` should work from a fresh shell.
 
 ## 10. Notes for the next AI
 

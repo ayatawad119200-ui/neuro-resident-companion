@@ -11,7 +11,11 @@ network calls.
 
 ## Current status
 
-**Phase 0 (setup) and Phase 1 (engine framework) are complete.**
+**Phase 0 (setup) and Phase 1 (engine framework) are complete, and the app is
+deployed.**
+
+- Live: https://ayatawad119200-ui.github.io/neuro-resident-companion/
+- Source: https://github.com/ayatawad119200-ui/neuro-resident-companion
 
 - No real clinical content is loaded yet. Scores, algorithms, drug rules, and
   interactions shown in the UI are **non-clinical demo objects** used only to

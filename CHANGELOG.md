@@ -36,6 +36,8 @@ Clinical content changes must also record the source version and review date.
 - GitHub Pages deployment: `BASE_PATH`-driven Vite base, relative PWA
   `start_url`/`scope`, Actions workflow, `.nojekyll`, and a `404.html` fallback
   for path URLs (D-015).
+- Published at https://ayatawad119200-ui.github.io/neuro-resident-companion/;
+  pushes to `main` redeploy automatically.
 - Documentation: README, AGENTS, PRD, requirements traceability, architecture,
   task list, progress, handover, decisions.
 
