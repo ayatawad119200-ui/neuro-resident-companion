@@ -47,10 +47,12 @@ src/
     dose.ts            # dose calculator + hard limits
     interactions.ts    # interaction matcher + severity ordering
     handover.ts        # elapsed time + handover text builder
-    engine.test.ts     # 56 unit tests
+    engine.test.ts     # 56 engine unit tests
   content/
     catalog.ts         # version, complaint labels, planned catalogues, sources
+    clinical.ts        # Phase 2 draft scores (GCS) + registered draft source
     demo.ts            # explicitly non-clinical demo objects
+    content.test.ts    # 9 content/source tests
   db/
     db.ts              # case/settings schemas, Dexie, backup/restore/wipe
     caseRepo.ts        # create/list/get/update/replace/delete/count

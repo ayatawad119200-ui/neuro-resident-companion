@@ -146,3 +146,26 @@
   works at `/` and `/<repo>/`. `public/.nojekyll` keeps Pages from filtering
   files, and the workflow copies `dist/index.html` to `dist/404.html` for stray
   path URLs. No runtime network calls, analytics, or patient data are added.
+
+## D-016 — 2026-11-18 — Author-provided dataset as a draft clinical source
+
+- Decision: Use the owner-provided [MedCalc-Pro](https://github.com/easymoney7774/MedCalc-Pro)
+  dataset as the provenance for Phase 2 draft values, starting with GCS.
+- Alternatives: Wait for pasted guideline text; use the dataset as a coverage
+  map only; transcribe from memory (rejected outright).
+- Reason: The repository owner confirmed ownership and permission. The dataset
+  contains explicit option→value mappings, so values can be transcribed
+  mechanically rather than recalled. Its `score.py`/`config.json` give a
+  verifiable commit-level provenance.
+- Constraints recorded at registration:
+  - The repository has **no LICENSE file** and **no external citations**
+    (`source` is `null` for every entry). It is an anonymous research artifact,
+    not a guideline.
+  - Therefore every value stays `status: 'draft'` until an independent clinical
+    reviewer checks it against a primary guideline/label. It must not be shown
+    as approved.
+  - `sourceId: 'medcalc-pro'`, `version: 'main-2026-06-07'` (repository state),
+    and the source row keeps `status: 'draft'` with no `reviewedBy`.
+  - Only explicit mappings are copied; no value is inferred. GCS uses the
+    dataset's head-injury bands (13–15 / 9–12 / 3–8) as written.
+  - The UI shows a draft notice next to every score from this source.

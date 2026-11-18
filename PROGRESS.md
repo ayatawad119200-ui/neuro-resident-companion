@@ -4,9 +4,9 @@
 
 - Version: `0.1.0`
 - Last updated: 2026-11-18
-- Current phase: **Phase 1 complete** (Phase 2 blocked on source text); Phase 3
-  deployment done
-- Completion: Phase 0 = 100%, Phase 1 = 100%, overall MVP ≈ 65%
+- Current phase: **Phase 2 started — GCS draft only** (remaining clinical content
+  still needs primary sources)
+- Completion: Phase 0 = 100%, Phase 1 = 100%, Phase 2 ≈ 10%, overall MVP ≈ 68%
 - Live: https://ayatawad119200-ui.github.io/neuro-resident-companion/
 
 ## Tasks
@@ -23,7 +23,8 @@
 | T-012 | Decision-tree runner + tests | DONE | 1 | Walker + validator |
 | T-013 | Dose engine + tests | DONE | 1 | Caps + floor rounding |
 | T-014 | Interaction engine + tests | DONE | 1 | Severity order + dedupe |
-| T-020–T-030 | Clinical modules | BLOCKED | — | Need pasted source text |
+| T-020–T-030 | Clinical modules | BLOCKED | — | Remaining items need sourced text |
+| T-021 | Exam forms + GCS | DOING | 4 | GCS draft (MedCalc-Pro, owner permission); NIHSS pending |
 | T-040 | Export/import + handover | DONE | 2 | JSON + text + print/PDF view (D-014) |
 | T-041 | E2E + Lighthouse + a11y | DONE | 2 | Lighthouse 100 on 8 routes; 6 Playwright E2E tests (D-013) |
 | T-042 | Five-doctor pilot | TODO | — | |
@@ -120,11 +121,42 @@
     versions (they are forced onto Node 24); deployment still succeeds.
   - `npm audit` advisories remain untriaged.
 
+### Session 4 — 2026-11-18 — AI: DeepSeek V4.1 Flash Free
+
+- Task: T-021 (GCS slice) — start Phase 2 from the owner-provided MedCalc-Pro
+  dataset (permission confirmed by the owner).
+- Completed:
+  - Registered `medcalc-pro` as a **draft** source (`version: main-2026-06-07`,
+    URL, no reviewer) per D-016.
+  - Added `gcsScore` (E 1–4, V 1–5, M 1–6; total 3–15) transcribed exactly from
+    the dataset's `config.json`/`score.py`, including its head-injury bands
+    (13–15 mild, 9–12 moderate, 3–8 severe).
+  - `content version` bumped to `0.2.0`; the source registry now lists the draft
+    source.
+  - Scores UI now renders clinical draft cards separately from the demo card,
+    shows a draft-source notice, and removes available scores from the pending
+    list.
+  - 9 content tests: schema/source linkage, full 3–15 band coverage, min/max,
+    boundary 8/9 and 12/13, incomplete answers, invalid option.
+  - Live manual check in the production preview: E1V1M1 → 3 (severe),
+    E4V5M6 → 15 (mild); no console errors.
+- Files: `src/content/clinical.ts`, `src/content/content.test.ts`,
+  `src/content/catalog.ts`, `src/content/index.ts`,
+  `src/features/clinical/ScoresPanel.tsx`, `src/i18n/{ar,en}.ts`,
+  `DECISIONS.md` (D-016), docs.
+- Tests: 65 unit passed; lint and typecheck clean; build passed.
+- Open issues:
+  - MedCalc-Pro has no LICENSE file and no external citations. Values stay
+    draft until an independent reviewer checks them against primary sources.
+  - NIHSS has not been added yet.
+
 ## Medical content awaiting review
 
 | File | Source | Status | Reviewer |
 |---|---|---|---|
+| `src/content/clinical.ts` (GCS) | MedCalc-Pro, `main-2026-06-07` (D-016) | Draft | — |
 | `src/content/demo.ts` | Demo object (not a guideline) | Non-clinical | — |
 | `src/content/catalog.ts` | Planned source list (not registered sources) | Pending | — |
 
-No real clinical value has been entered. `sources` is empty by design.
+No approved clinical value has been entered. Only the GCS draft exists; every
+other score/algorithm/drug value is still absent.

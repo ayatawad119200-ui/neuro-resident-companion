@@ -1,7 +1,8 @@
 import type { Language } from '../db/db';
 import type { Source } from '../engine/types';
+import { medcalcSource } from './clinical';
 
-export const CONTENT_VERSION = '0.1.0';
+export const CONTENT_VERSION = '0.2.0';
 
 /* ------------------------------------------------------------------ */
 /* Shared, non-clinical catalogues used by the UI.                     */
@@ -129,5 +130,5 @@ export const plannedSources: readonly PlannedSource[] = [
   { id: 'drug-labels', org: 'FDA / EMA / EDA / BNF', scope: 'Drug labels & interactions' },
 ];
 
-/** Registered, reviewed sources. Filled in Phase 2 from pasted source text. */
-export const sources: readonly Source[] = [];
+/** Registered sources. Draft until an independent reviewer approves them. */
+export const sources: readonly Source[] = [medcalcSource];

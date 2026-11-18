@@ -154,11 +154,15 @@ export const en: Translation = {
     subtitle: 'Scores and algorithms run only from source-verified content.',
     tabScores: 'Scores',
     tabAlgorithms: 'Algorithms',
-    phaseTitle: 'Clinical content is awaiting verification',
+    phaseTitle: 'Clinical content is draft',
     phaseBody:
-      'No score or algorithm is calculated before its values are extracted from the source text and reviewed. What you see now is a demo used to test the engine only.',
+      'The displayed values are transcribed from an author-provided source and have not been approved by independent reviewers. Check the original source before any decision.',
     demoBadge: 'Demo',
     demoNote: 'Fictional, non-clinical data. Never use for a treatment decision.',
+    draftSourceNote:
+      'Draft content from an author-provided source — not yet reviewed by independent clinicians.',
+    demoSectionTitle: 'Engine test card',
+    demoSectionBody: 'Fictional, non-clinical data used only to test the engine.',
     pendingTitle: 'Awaiting verification',
     pendingBody: 'Paste the source text in the content session (Phase 2) to enable this item.',
     scoreResult: 'Score',
