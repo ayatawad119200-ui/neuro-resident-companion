@@ -21,7 +21,7 @@ import { clinicalScores, demoScore, plannedScores } from '../../content';
 
 function ScoreCard({ def }: { def: ScoreDef }) {
   const { t } = useTranslation();
-  const [answers, setAnswers] = useState<Record<string, number>>({});
+  const [answers, setAnswers] = useState<Record<string, string>>({});
   const isDemo = def.id === demoScore.id;
 
   let result: ScoreResult | null = null;
@@ -58,20 +58,20 @@ function ScoreCard({ def }: { def: ScoreDef }) {
             </label>
             <Select
               id={`score-${def.id}-${item.id}`}
-              value={answers[item.id] === undefined ? '' : String(answers[item.id])}
+              value={answers[item.id] ?? ''}
               onChange={(event) => {
                 const value = event.target.value;
                 setAnswers((previous) => {
                   const next = { ...previous };
                   if (value === '') delete next[item.id];
-                  else next[item.id] = Number(value);
+                  else next[item.id] = value;
                   return next;
                 });
               }}
             >
               <option value="">—</option>
               {item.options.map((option) => (
-                <option key={option.id} value={option.value}>
+                <option key={option.id} value={option.id}>
                   {option.label}
                 </option>
               ))}

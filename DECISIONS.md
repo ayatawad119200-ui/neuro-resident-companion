@@ -169,3 +169,17 @@
   - Only explicit mappings are copied; no value is inferred. GCS uses the
     dataset's head-injury bands (13–15 / 9–12 / 3–8) as written.
   - The UI shows a draft notice next to every score from this source.
+
+## D-017 — 2026-11-18 — Score answers may be option IDs
+
+- Decision: `calculateScore` accepts either a numeric option value or the
+  option's `id`; the UI passes IDs.
+- Alternatives: Keep values only and merge “untestable” into the 0-valued
+  option label; add a separate `flag` field to options.
+- Reason: NIHSS (from the same dataset) maps several distinct options to 0 —
+  e.g. “no drift” and “untestable” in the motor and ataxia items. With values
+  only, the engine cannot tell them apart, so a limb recorded as untestable
+  would display “No drift”, which is a documentation error.
+- Impact: `ScoreItemResult` gained `optionId`. Existing numeric callers and
+  tests are unchanged. Duplicate values remain valid content; IDs are unique
+  within an item and are the preferred answer key. No clinical value changes.

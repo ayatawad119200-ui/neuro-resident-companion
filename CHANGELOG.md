@@ -38,10 +38,13 @@ Clinical content changes must also record the source version and review date.
   for path URLs (D-015).
 - Published at https://ayatawad119200-ui.github.io/neuro-resident-companion/;
   pushes to `main` redeploy automatically.
-- First Phase 2 draft score: GCS (eye/verbal/motor, total 3–15, head-injury
-  bands) transcribed from the owner-provided MedCalc-Pro dataset (D-016).
-  Registered `medcalc-pro` as a **draft** source with no reviewer; content
-  version bumped to `0.2.0`. 9 content tests added (65 total).
+- First Phase 2 draft scores transcribed from the owner-provided MedCalc-Pro
+  dataset (D-016): GCS (E/V/M, total 3–15, head-injury bands) and NIHSS
+  (15 items, total 0–42, four bands). Registered `medcalc-pro` as a **draft**
+  source with no reviewer; content version bumped to `0.3.0`. 15 content tests
+  added (72 total).
+- `calculateScore` now also accepts an option `id`, so items whose options share
+  a value (e.g. NIHSS “untestable” = 0) keep the correct recorded label (D-017).
 - Documentation: README, AGENTS, PRD, requirements traceability, architecture,
   task list, progress, handover, decisions.
 
@@ -64,7 +67,8 @@ Clinical content changes must also record the source version and review date.
   100, SEO 100.
 - Playwright (production preview): 6/6 E2E tests, including a print-generated
   PDF (`%PDF-`) and an offline reload with cached deep link.
-- `npm run check` and `npm run build` pass; 56/56 unit tests.
+- `npm run check` and `npm run build` pass; unit tests all green (56 at the
+  0.1.0 release, 72 after the Phase 2 draft content).
 
 ### Security / privacy
 

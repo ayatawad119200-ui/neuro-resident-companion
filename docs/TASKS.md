@@ -32,7 +32,7 @@ created. Do not fill these from memory.**
 | ID | Task | Status | Depends on |
 |---|---|---|---|
 | T-020 | History templates (Stroke first) | BLOCKED | FR-102/103 source text |
-| T-021 | Exam forms + GCS + NIHSS | DOING | FR-201, FR-301 — GCS draft added from the author-provided MedCalc-Pro dataset; NIHSS next |
+| T-021 | Exam forms + GCS + NIHSS | DOING | FR-201, FR-301 — GCS and NIHSS drafts added from the author-provided MedCalc-Pro dataset; exam forms remain |
 | T-022 | Remaining scores (batches of 3) | BLOCKED | FR-301, FR-302 |
 | T-023 | Algorithm: acute ischemic stroke | BLOCKED | FR-401/402 |
 | T-024 | Algorithms: ICH + SAH | BLOCKED | FR-401/402 |

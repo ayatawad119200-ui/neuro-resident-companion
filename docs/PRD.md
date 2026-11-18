@@ -59,7 +59,7 @@ unclear guideline provenance, and unreliable connectivity. NRC aims to:
 |---|---|---|
 | M1 History | Case, complaints, history, LKW | Core case CRUD done; templates/red flags pending |
 | M2 Neuro exam | GCS, cranial nerves, motor, reflexes | Not started |
-| M3 Scores | 18 planned scores | Generic engine done; GCS draft loaded (D-016) |
+| M3 Scores | 18 planned scores | Generic engine done; GCS + NIHSS drafts loaded (D-016) |
 | M4 Algorithms | Decision trees | Runner + validation done; content pending |
 | M5 Drugs | Dosing + interactions | Engines + demo UI done; content pending |
 | M6 Bulbar/swallow | Swallow screen | Not started |

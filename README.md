@@ -17,12 +17,12 @@ deployed.**
 - Live: https://ayatawad119200-ui.github.io/neuro-resident-companion/
 - Source: https://github.com/ayatawad119200-ui/neuro-resident-companion
 
-- One **draft** score is loaded: GCS, transcribed from the owner-provided
-  MedCalc-Pro dataset (`status: 'draft'`, no independent reviewer yet — D-016).
-  The UI labels it as draft.
+- Two **draft** scores are loaded: GCS and NIHSS, transcribed from the
+  owner-provided MedCalc-Pro dataset (`status: 'draft'`, no independent reviewer
+  yet — D-016). The UI labels both as draft.
 - No other real clinical content is loaded. Scores, algorithms, drug rules, and
-  interactions other than GCS are **non-clinical demo objects** used only to
-  exercise the engines.
+  interactions other than GCS/NIHSS are **non-clinical demo objects** used only
+  to exercise the engines.
 - Every real clinical value must be reviewed against a primary guideline or
   label before it can become `approved`.
 - The source registry contains one draft source (`medcalc-pro`); all others are
@@ -38,7 +38,7 @@ npm install
 npm run dev        # http://localhost:5173
 npm run lint       # ESLint
 npm run typecheck  # tsc --noEmit
-npm test           # Vitest (65 unit tests)
+npm test           # Vitest (72 unit tests)
 npm run check      # lint + typecheck (app + e2e) + unit tests
 npm run test:e2e   # Playwright (6 E2E tests; builds + previews)
 npm run build      # typecheck + production build + service worker
@@ -79,7 +79,7 @@ user sites. See `DECISIONS.md` D-015.
 | Disclaimer gate + persistent acceptance | Done |
 | Offline badge, PWA manifest, Workbox service worker | Done — cold offline deep links verified |
 | Accessibility audit (Lighthouse, 8 routes) | 100 accessibility / best practices / SEO |
-| ESLint + typecheck + 65 tests + production build | All pass (`npm run check`) |
+| ESLint + typecheck + 72 tests + production build | All pass (`npm run check`) |
 | Playwright E2E (disclaimer, cases, settings, PDF, offline) | 6/6 pass (`npm run test:e2e`) |
 | Case CRUD with autosave, LKW + elapsed time, BMI, handover note | Done |
 | JSON backup export/import, typed `DELETE` wipe | Done |
@@ -89,7 +89,7 @@ user sites. See `DECISIONS.md` D-015.
 | Decision-tree walker + validation + tests | Done |
 | Dose calculator (caps, floor rounding, hard input limits) + tests | Done |
 | Interaction matcher (dedupe + severity order) + tests | Done |
-| Real scores/algorithms/drugs/investigations | GCS **draft** only; rest pending review |
+| Real scores/algorithms/drugs/investigations | GCS + NIHSS **draft** only; rest pending review |
 
 ## Project layout
 

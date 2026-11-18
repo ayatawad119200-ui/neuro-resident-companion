@@ -2,7 +2,7 @@ import type { Language } from '../db/db';
 import type { Source } from '../engine/types';
 import { medcalcSource } from './clinical';
 
-export const CONTENT_VERSION = '0.2.0';
+export const CONTENT_VERSION = '0.3.0';
 
 /* ------------------------------------------------------------------ */
 /* Shared, non-clinical catalogues used by the UI.                     */

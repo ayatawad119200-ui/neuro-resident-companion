@@ -10,13 +10,14 @@ score/tree/dose/interaction objects in the UI are explicitly non-clinical demos.
 
 Live: https://ayatawad119200-ui.github.io/neuro-resident-companion/
 
-Clinical content: one **draft** score (GCS) from the owner-provided
+Clinical content: two **draft** scores (GCS, NIHSS) from the owner-provided
 MedCalc-Pro dataset; no approved clinical values yet.
 
 ## 2. Last task
 
-**T-021 — GCS (partial) — DOING.** GCS is transcribed from the owner-provided
-MedCalc-Pro dataset as `status: 'draft'` (D-016); NIHSS and exam forms remain.
+**T-021 — GCS + NIHSS (partial) — DOING.** Both are transcribed from the
+owner-provided MedCalc-Pro dataset as `status: 'draft'` (D-016); exam forms
+remain.
 **T-043 is DONE**: the repo is public at
 https://github.com/ayatawad119200-ui/neuro-resident-companion and Pages deploys
 from Actions. **T-040/T-041 are also DONE**: print/PDF export, 6 Playwright E2E
@@ -43,9 +44,9 @@ tests, and Lighthouse 100 on 8 local routes plus the live site.
 - `src/app/*` — hash router, layout, disclaimer gate, settings context, toast.
 - `src/i18n/*` — Arabic/English dictionaries (symmetric keys).
 - `src/ui/*` — design-system kit, icons, date formatting.
-- `src/engine/engine.test.ts` — 56 engine tests.
-- `src/content/clinical.ts` — registered draft source `medcalc-pro` + GCS draft
-  (D-016); `src/content/content.test.ts` — 9 content tests.
+- `src/engine/engine.test.ts` — 57 engine tests.
+- `src/content/clinical.ts` — registered draft source `medcalc-pro` + GCS and
+  NIHSS drafts (D-016). `src/content/content.test.ts` — 15 content tests.
 - i18n placeholder fix: `{var}` → `{{var}}` for counts, age, score maximum,
   interaction count, and import totals.
 - Manual smoke test passed in the production preview (disclaimer, case creation
@@ -83,9 +84,9 @@ tests, and Lighthouse 100 on 8 local routes plus the live site.
 
 ## 4. What remains in the same task
 
-- T-021: add NIHSS (same source, draft) and the exam-form fields; get an
-  independent clinician to verify the GCS values and bands against a primary
-  source before any `status: 'approved'` change.
+- T-021: add the exam-form fields; get an independent clinician to verify the
+  GCS and NIHSS values, options, and bands against primary sources before any
+  `status: 'approved'` change.
 - T-042 (five-doctor pilot) still needs approved clinical content.
 - Optional follow-ups:
   - Wire score/decision/med logs to case records.
@@ -108,7 +109,7 @@ npm install
 npm run dev        # http://localhost:5173
 npm run lint       # ESLint flat config
 npm run typecheck
-npm test           # 65 unit tests
+npm test           # 72 unit tests
 npm run check      # lint + typecheck (app + e2e) + unit tests
 npm run test:e2e   # 6 Playwright E2E tests (builds + previews)
 npm run test:e2e:ui
@@ -145,8 +146,8 @@ Everything clinical, including but not limited to:
 
 No real value may be filled from memory. `src/content/catalog.ts` intentionally
 keeps every unverified item planned. The only transcribed values are the GCS
-draft in `src/content/clinical.ts` (MedCalc-Pro, D-016); they still need a
-primary-source check before approval.
+and NIHSS drafts in `src/content/clinical.ts` (MedCalc-Pro, D-016); they still
+need a primary-source check before approval.
 
 ## 9. Known bugs / gaps
 
@@ -157,7 +158,8 @@ primary-source check before approval.
 - The Pages workflow logs a Node 20 deprecation annotation for the pinned action
   versions (`checkout@v4`, `setup-node@v4`, `configure-pages@v5`); GitHub forces
   them onto Node 24 and deployment succeeds. Bump the actions later.
-- Real clinical content is limited to one draft GCS; everything else is absent.
+- Real clinical content is limited to two draft scores (GCS, NIHSS); everything
+  else is absent.
 - MedCalc-Pro (D-016) has no LICENSE file and no external citations, so its
   values stay draft until checked against a primary guideline/label by an
   independent reviewer.

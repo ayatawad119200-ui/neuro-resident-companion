@@ -29,8 +29,8 @@ Source of truth: the NRC Spec Kit, sections 3–9.
 
 | ID | Requirement | Status | Evidence / next step |
 |---|---|---|---|
-| FR-301 | Planned score list (NIHSS, GCS, mRS, ABCD2, CHA2DS2-VASc, HAS-BLED, ICH, Hunt & Hess, WFNS, Modified Fisher, ASPECTS, Hoehn & Yahr, Ashworth, MRC sum, ALSFRS-R, Epworth, MoCA, ROSIER) | PARTIAL | Catalogue in `catalog.ts`; GCS is a draft (MedCalc-Pro, D-016); rest not loaded |
-| FR-302 | Generic score arithmetic + interpretation | DONE | `calculateScore` + 8 tests |
+| FR-301 | Planned score list (NIHSS, GCS, mRS, ABCD2, CHA2DS2-VASc, HAS-BLED, ICH, Hunt & Hess, WFNS, Modified Fisher, ASPECTS, Hoehn & Yahr, Ashworth, MRC sum, ALSFRS-R, Epworth, MoCA, ROSIER) | PARTIAL | Catalogue in `catalog.ts`; GCS + NIHSS are drafts (MedCalc-Pro, D-016); rest not loaded |
+| FR-302 | Generic score arithmetic + interpretation | DONE | `calculateScore` + 9 tests; answers by value or option id (D-017) |
 | — | Missing answers never presented as final | DONE | `complete` flag + UI warning |
 | — | Invalid option values rejected | DONE | `EngineError('INVALID_OPTION')` |
 
@@ -101,7 +101,7 @@ Source of truth: the NRC Spec Kit, sections 3–9.
 | NFR-02 | LCP < 2 s; JS bundle < 300 KB gzip | PARTIAL | JS ≈ 140.5 KB gzip, CSS ≈ 6.6 KB gzip; LCP not measured on device |
 | NFR-03 | Privacy: IndexedDB only, no patient identifiers, no analytics, wipe | DONE | No network calls; schema rejects nothing extra, but UI warns |
 | NFR-04 | Accessibility: RTL, 44px targets, labels | DONE | Lighthouse Accessibility 100 on 8 routes; 44px targets; RTL verified |
-| NFR-05 | Pure logic + high test coverage | PARTIAL | 65 unit + 6 E2E tests pass; line coverage not measured |
+| NFR-05 | Pure logic + high test coverage | PARTIAL | 72 unit + 6 E2E tests pass; line coverage not measured |
 | NFR-06 | Content separate from code + schema validation | DONE (framework) | Zod schemas; content objects in `src/content` |
 | NFR-07 | Versioning + CHANGELOG | DONE | `0.1.0`, `CHANGELOG.md` |
 | NFR-08 | Disclaimer + footer | DONE | Gate, footer, settings re-open |

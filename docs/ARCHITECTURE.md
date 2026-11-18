@@ -42,7 +42,7 @@ src/
   engine/
     types.ts           # Zod schemas, inferred types, EngineError
     units.ts           # conversions, range assertions, BMI, formatting
-    score.ts           # generic score calculator
+    score.ts           # generic score calculator (value or option-id answers)
     algorithm.ts       # tree walker + structural validator
     dose.ts            # dose calculator + hard limits
     interactions.ts    # interaction matcher + severity ordering
@@ -50,9 +50,9 @@ src/
     engine.test.ts     # 56 engine unit tests
   content/
     catalog.ts         # version, complaint labels, planned catalogues, sources
-    clinical.ts        # Phase 2 draft scores (GCS) + registered draft source
+    clinical.ts        # Phase 2 draft scores (GCS, NIHSS) + registered source
     demo.ts            # explicitly non-clinical demo objects
-    content.test.ts    # 9 content/source tests
+    content.test.ts    # 15 content/source tests
   db/
     db.ts              # case/settings schemas, Dexie, backup/restore/wipe
     caseRepo.ts        # create/list/get/update/replace/delete/count
@@ -94,7 +94,7 @@ Source text ──extract──▶ Source row + clinical object (draft)
 
 | Function | Contract |
 |---|---|
-| `calculateScore(def, values)` | Sums valid options; `complete=false` for missing items; throws `INVALID_OPTION`/`EMPTY_DEFINITION` |
+| `calculateScore(def, values)` | Sums valid options (by value or option id); `complete=false` for missing items; throws `INVALID_OPTION`/`EMPTY_DEFINITION` |
 | `walkAlgorithm(def, choices)` | Returns `question`, `result`, or typed `error`; detects cycles and missing nodes/options |
 | `validateAlgorithm(def)` | Structural issues: duplicates, missing start/targets, unreachable nodes, payload mismatches |
 | `calculateDose(rule, input, requestedUnit?)` | Hard range limits, rule weight limits, absolute cap, floor rounding, calculation trail, draft/adjustment warnings |

@@ -161,11 +161,35 @@ describe('calculateScore', () => {
     expectEngineError(() => calculateScore(testScore, { alpha: 9 }), 'INVALID_OPTION');
   });
 
-  it('rejects non-numeric answers', () => {
+  it('resolves an answer by option id when two options share a value', () => {
+    const duplicate: ScoreDef = {
+      ...testScore,
+      items: [
+        {
+          id: 'limb',
+          label: 'Limb',
+          options: [
+            { id: 'none', label: 'None', value: 0 },
+            { id: 'untestable', label: 'Untestable', value: 0 },
+          ],
+        },
+      ],
+      interpretation: [{ min: 0, max: 0, label: 'Zero', tone: 'ok' }],
+    };
+
+    const result = calculateScore(duplicate, { limb: 'untestable' });
+    expect(result.score).toBe(0);
+    expect(result.complete).toBe(true);
+    expect(result.items[0].optionId).toBe('untestable');
+    expect(result.items[0].optionLabel).toBe('Untestable');
+  });
+
+  it('rejects an answer that matches no option value or id', () => {
     expectEngineError(
       () => calculateScore(testScore, { alpha: '1' as unknown as number }),
       'INVALID_OPTION',
     );
+    expectEngineError(() => calculateScore(testScore, { alpha: 'missing' }), 'INVALID_OPTION');
   });
 
   it('rejects an empty definition', () => {
