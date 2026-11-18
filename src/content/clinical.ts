@@ -40,7 +40,6 @@ export const gcsScore: ScoreDef = {
     {
       id: 'verbal_response',
       label: 'Verbal response (V)',
-      help: 'If intubated, typically scored as 1 or recorded as 1T (select the closest option based on the actual response, usually None).',
       options: [
         {
           id: 'v5',

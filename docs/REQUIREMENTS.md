@@ -19,7 +19,7 @@ Source of truth: the NRC Spec Kit, sections 3–9.
 
 | ID | Requirement | Status | Evidence / next step |
 |---|---|---|---|
-| FR-201 | GCS E/V/M with intubated V=T | BLOCKED | Requires source text; planned score item |
+| FR-201 | GCS E/V/M with intubated V=T | PARTIAL | GCS E/V/M loaded as a draft (MedCalc-Pro, D-016); intubated V=T has no source text yet |
 | FR-202 | Cranial nerves I–XII | BLOCKED | Phase 2 |
 | FR-203 | Motor MRC 0–5, tone, bulk | BLOCKED | Phase 2 |
 | FR-204 | Reflexes, sensory, cerebellar, gait, meningeal, neglect/aphasia | BLOCKED | Phase 2 |

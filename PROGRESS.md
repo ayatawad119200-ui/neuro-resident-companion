@@ -156,7 +156,10 @@
 - Open issues:
   - MedCalc-Pro has no LICENSE file and no external citations. Values stay
     draft until an independent reviewer checks them against primary sources.
-  - Exam-form fields (FR-201) are still missing from T-021.
+  - Exam-form fields (FR-201) are still missing from T-021. The intubated GCS
+    “V=T” convention is not in the dataset, so no such option was added; it
+    needs source text. An earlier draft help text about intubation was removed
+    because it was not source-backed.
 
 ## Medical content awaiting review
 
